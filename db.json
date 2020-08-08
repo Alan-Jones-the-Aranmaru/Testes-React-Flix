@@ -1,0 +1,18 @@
+{
+    "categorias": [
+        {
+            "id": "1",
+            "nome": "Front End",
+            "descricao": "Uma categoria qquer show",
+            "cor": "#1ffcbd"
+        },
+        {
+            "id": "2",
+            "nome": "Front End",
+            "descricao": "Outra categoria",
+            "cor": "#1ffcbd"
+        }
+        
+    ]
+}
+
