@@ -41,25 +41,36 @@ function CadastroCategoria() {
 
     useEffect(() => {
         console.log('alo, olá');
-        setTimeout(() => {
-            setCategorias([
-                ...categorias,
-                {
-                    id: 1,
-                    nome: 'Front End',
-                    descricao: 'Uma categoria qquer show',
-                    cor: '#1ffcbd',
-                },
-                {
-                    id: 2,
-                    nome: 'Back End',
-                    descricao: 'Outra categoria',
-                    cor: '#1ffcbd',
-                },
+
+        const URL_TOP = 'http://localhost:8080/categorias';
+
+        fetch(URL_TOP)
+            .then(async(respostaDoServidor) => {
+                const resposta = await respostaDoServidor.json();
+                setCategorias([
+                    ...resposta,
+                ]);
+            });
+
+        // setTimeout(() => {
+        //     setCategorias([
+        //         ...categorias,
+        //         {
+        //             id: 1,
+        //             nome: 'Front End',
+        //             descricao: 'Uma categoria qquer show',
+        //             cor: '#1ffcbd',
+        //         },
+        //         {
+        //             id: 2,
+        //             nome: 'Back End',
+        //             descricao: 'Outra categoria',
+        //             cor: '#1ffcbd',
+        //         },
                 
-            ])
+        //     ])
             
-        }, 4 * 1000);
+        // }, 4 * 1000);
     }, []);
 
   return (
@@ -86,7 +97,7 @@ function CadastroCategoria() {
 
         <FormField
             label="Descrição" 
-            type=""
+            type="textarea"
             name="descricao" 
             value={values.descricao}
             onChange={handleChance}
