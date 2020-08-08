@@ -42,7 +42,10 @@ function CadastroCategoria() {
     useEffect(() => {
         console.log('alo, olá');
 
-        const URL_TOP = 'http://localhost:8080/categorias';
+        const URL_TOP = window.location.hostname.includes('localhost')
+        ? 'http://localhost:8080/categorias'
+        : 'https://flix-me-up.herokuapp.com/categorias';
+        //'http://localhost:8080/categorias';
 
         fetch(URL_TOP)
             .then(async(respostaDoServidor) => {
