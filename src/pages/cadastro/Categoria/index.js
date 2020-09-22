@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button'
+import useForm from '../../../hooks/useForm';
+
+
+
 
 function CadastroCategoria() {
 
@@ -11,33 +15,16 @@ function CadastroCategoria() {
         descricao: '',
         cor: '',
     }
+
+    const {handleChance, values, clearForm} = useForm(valoresIniciais);
+
     const [categorias, setCategorias] = useState([]);
     //const [nomeDaCategoria, setNomeDaCategoria] = useState(valoresIniciais); < eram esses nomes, mudaram p os abaixo
-    const [values, setValues] = useState(valoresIniciais);
+    
 
 
 
-    function setValue(chave, valor){
-        setValues({
-            ...values,
-            [chave]: valor, //nome: 'valor'
-        })
-    }
 
-    function handleChance(infosDoEvento) {
-        //setNomeDaCategoria(infosDoEvento.target.value);
-        //setValue('nome', infosDoEvento.target.value);
-        /*const { getAttribute, value } = infosDoEvento.target;
-        setValue(
-            getAttribute('name'),
-            value
-        );*/
-
-        setValue(
-            infosDoEvento.target.getAttribute('name'),
-            infosDoEvento.target.value
-        );
-    }
 
     useEffect(() => {
         console.log('alo, olá');
@@ -76,6 +63,18 @@ function CadastroCategoria() {
         // }, 4 * 1000);
     }, []);
 
+    /*
+    Isso aqui tinha entre a linha 155 e a 159
+     {categorias.map((categoria, indice) => {
+              return (
+                  <li key={`${categoria}${indice}`}>
+                      {categoria.nome}
+                  </li>
+              )
+          })}
+    */
+
+
   return (
     <PageDefault>
       <h1>Cadastro de Categoria: {values.nome}</h1>
@@ -87,7 +86,8 @@ function CadastroCategoria() {
             values
           ]);
 
-          setValues(valoresIniciais)
+          clearForm();
+          //setValues(valoresIniciais)
       }}>
 
         <FormField
@@ -150,13 +150,17 @@ function CadastroCategoria() {
         )}  
 
       <ul>
-          {categorias.map((categoria, indice) => {
-              return (
-                  <li key={`${categoria}${indice}`}>
-                      {categoria.nome}
-                  </li>
-              )
-          })}
+         
+
+         {categorias.map((categoria) => (
+            <li key={`${categoria.titulo}`}>
+                {categoria.titulo}
+            </li>
+         ))}
+          
+          
+          
+
       </ul>
 
 
