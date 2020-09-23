@@ -1,0 +1,3 @@
+Lembrar de usar o comando "npm run dev" para inicializar no terminal;
+
+Lembrar de que é na localhost 3000 e na 8080 o json;
